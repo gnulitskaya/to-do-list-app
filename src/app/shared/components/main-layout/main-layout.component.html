@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="navbar">
+<!--    <h1>duMMy</h1>-->
+    <h2>{{date | date:'shortTime':'':'ru'}}</h2>
+    <span>{{date | date:'mediumDate'}}</span>
+  </div>
+
+  <div class="main">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="container">
+      <app-tabs></app-tabs>
+    </div>
+  </div>
+
+</div>
