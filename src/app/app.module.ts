@@ -11,6 +11,9 @@ import { NotesPageComponent } from './pages/notes-page/notes-page.component';
 import { TodoPageComponent } from './pages/todo-page/todo-page.component';
 import { BookmarksPageComponent } from './pages/bookmarks-page/bookmarks-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
+import { TodoItemComponent } from './shared/components/todo-item/todo-item.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -22,12 +25,15 @@ registerLocaleData(ruLocale, 'ru');
     NotesPageComponent,
     TodoPageComponent,
     BookmarksPageComponent,
-    AccountPageComponent
+    AccountPageComponent,
+    TodoItemComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
