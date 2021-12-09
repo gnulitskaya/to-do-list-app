@@ -5,9 +5,4 @@
   ></app-todo-item>
 </div>
 
-<div class="actions">
-  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
-    <input type="text" formControlName="text" required>
-    <button type="submit">Add</button>
-  </form>
-</div>
+<app-add-todo (onSubmit)="onSubmit($event)"></app-add-todo>
