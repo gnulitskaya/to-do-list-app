@@ -1,0 +1,7 @@
+<div class="todo-item">
+  <label>
+    <input type="checkbox" [checked]="post.completed" (change)="onToggle(post)">
+    {{post.text}}
+  </label>
+  <div class="remove" (click)="remove($event)">x</div>
+</div>
