@@ -3,5 +3,7 @@
     <input type="checkbox" [checked]="post.completed" (change)="onToggle(post)">
     {{post.text}}
   </label>
-  <div class="remove" (click)="remove($event)">x</div>
+  <div class="remove" (click)="remove($event)"><span class="material-icons-outlined">
+delete
+</span></div>
 </div>

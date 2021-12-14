@@ -16,6 +16,7 @@ export class TodoItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   remove(id: any) {
     this.onRemove.emit(id);
   }
@@ -25,6 +26,5 @@ export class TodoItemComponent implements OnInit {
     // Toggle on server
     this.postsService.toggleCompleted(post).subscribe(post => console.log(post));
   }
-
 
 }

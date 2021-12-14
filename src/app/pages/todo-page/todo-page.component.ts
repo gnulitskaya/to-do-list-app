@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PostsService} from "../../shared/todo.service";
 import {Post} from "../../shared/interfaces";
@@ -16,22 +16,10 @@ export class TodoPageComponent implements OnInit {
   posts: Post[] = []
   dSub?: Subscription
 
+
   ngOnInit() {
     this.postsService.getAll()
       .subscribe(posts => this.posts = posts);
-  }
-
-  onSubmit(text: string) {
-    const post: Post = {
-      text,
-      date: new Date(),
-      completed: false
-    }
-
-    this.postsService.create(post).subscribe( () => {
-      this.posts.push(post);
-    })
-    console.log(post)
   }
 
   onRemove(id: any) {

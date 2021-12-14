@@ -60,12 +60,76 @@ html, body {
   justify-content: space-between;
   align-items: center;
   .remove{
-    background-color: red;
-    padding: 3px 5px;
-    border-radius: 10px;
     cursor: pointer;
+    line-height: 0;
+    opacity: .6;
+    transition: opacity .3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+    .material-icons-outlined{font-size: 24px;}
   }
   input {
     margin-right: 5px;
+  }
+}
+
+.loader-wrapper {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  top: 20%;
+}
+.loader {
+  width:45px;
+  height:45px;
+  padding:0px;
+  border-radius:100%;
+  border:5px solid;
+  border-top-color: $blue;
+  border-bottom-color: $gray-500;
+  border-left-color: $blue;
+  border-right-color: $gray-500;
+  -webkit-animation: loader4 1s ease-in-out infinite;
+  animation: loader 1s ease-in-out infinite;
+}
+@keyframes loader {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+@-webkit-keyframes loader {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(360deg);}
+}
+
+.center {
+  display: flex;
+  margin: 0 auto;
+}
+
+.add-wrapper {
+  @include glass;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  h2 {
+    margin-bottom: 10px;
+  }
+  .btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+    button {
+      width: 100%;
+    }
+  }
+  input {
+    border-radius: 5px;
+    border: 2px solid grey;
+    width: 100%;
+    padding: 5px 10px;
   }
 }

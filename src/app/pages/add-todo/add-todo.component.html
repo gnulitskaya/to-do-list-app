@@ -1,6 +1,11 @@
-<div class="actions">
+<div class="add-wrapper">
+  <h2>Add todo</h2>
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
-    <input type="text" formControlName="text" required>
-    <button type="submit">Add</button>
+    <input type="text" formControlName="text" required placeholder="Add new todo">
+    <div class="btns">
+      <button type="submit" class="btn btn-primary fw-bold">Add</button>
+      <button routerLink="/todo" class="btn btn-dark">Cancel</button>
+    </div>
+
   </form>
 </div>
