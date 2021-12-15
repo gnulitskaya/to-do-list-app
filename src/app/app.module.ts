@@ -15,6 +15,7 @@ import { TodoItemComponent } from './shared/components/todo-item/todo-item.compo
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AddTodoComponent } from './pages/add-todo/add-todo.component';
+import { EditTodoComponent } from './pages/edit-todo/edit-todo.component';
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -28,7 +29,8 @@ registerLocaleData(ruLocale, 'ru');
     BookmarksPageComponent,
     AccountPageComponent,
     TodoItemComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    EditTodoComponent
   ],
     imports: [
         BrowserModule,

@@ -3,7 +3,15 @@
     <input type="checkbox" [checked]="post.completed" (change)="onToggle(post)">
     {{post.text}}
   </label>
-  <div class="remove" (click)="remove($event)"><span class="material-icons-outlined">
-delete
-</span></div>
+  <div class="todo-item__btns">
+    <div class="edit" routerLink="/todo/edit">
+    <span class="material-icons-outlined">
+      edit
+    </span>
+    </div>
+    <div class="remove" (click)="remove($event)">
+      <span class="material-icons-outlined">delete</span>
+    </div>
+  </div>
+
 </div>
