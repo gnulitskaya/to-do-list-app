@@ -4,7 +4,7 @@
     {{post.text}}
   </label>
   <div class="todo-item__btns">
-    <div class="edit" routerLink="/todo/edit">
+    <div class="edit" [routerLink]="[post.id, 'edit']">
     <span class="material-icons-outlined">
       edit
     </span>

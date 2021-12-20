@@ -46,4 +46,20 @@ export class PostsService {
     return this.http.put(`${environment.fbDbUrl}/posts/${post.id}.json`, post);
   }
 
+  getById(id: string):Observable<Post> {
+    return this.http.get<Post>(`${environment.fbDbUrl}/posts/${id}.json`)
+      .pipe(
+        map((post:Post) => {
+          return {
+            ...post, id,
+            date: new Date(post.date)
+          }
+        })
+      )
+  }
+
+  update(post: Post): Observable<Post> {
+    return this.http.patch<Post>(`${environment.fbDbUrl}/posts/${post.id}.json`, post)
+  }
+
 }
