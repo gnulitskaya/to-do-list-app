@@ -10,6 +10,12 @@ export interface Post {
   completed: boolean
 }
 
+export interface Note {
+  id?: string
+  text: string
+  date: Date
+}
+
 export interface FbCreateResponse {
   name: string
 }
