@@ -1,3 +1,4 @@
+import { NoteStore } from './pages/notes-page/state/note.store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -38,7 +39,7 @@ registerLocaleData(ruLocale, 'ru');
         ReactiveFormsModule,
         HttpClientModule
     ],
-  providers: [],
+  providers: [NoteStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

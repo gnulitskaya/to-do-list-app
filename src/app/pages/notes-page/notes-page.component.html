@@ -1,10 +1,8 @@
-<ul>
-  <li *ngFor="let note of notes">
-    {{note.text}}
-  </li>
-</ul>
-
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <input type="text" formControlName="text">
-  <button type="submit" class="btn btn-primary">Add</button>
+<form [formGroup]="formS">
+  <input type="text" formControlName='title' #input (keydown.enter)="add(input)">
+  <button type='submit' (click)="add(input)">ADD</button>
 </form>
+
+<div *ngIf="notes$ | async as notes">
+  <div *ngFor="let not of notes">{{not.title}}</div>
+</div>

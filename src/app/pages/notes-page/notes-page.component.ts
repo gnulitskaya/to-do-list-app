@@ -1,39 +1,34 @@
+import { Observable, Subject } from 'rxjs';
+import { NotesService } from './notes.service';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import {Note, Post} from "../../shared/interfaces";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NoteService} from "../../shared/note.service";
+import { Note } from 'src/app/shared/interfaces';
+import { NoteQuery } from './state/note.store';
+import { filter, map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-notes-page',
   templateUrl: './notes-page.component.html',
   styleUrls: ['./notes-page.component.scss']
 })
-export class NotesPageComponent implements OnInit {
-  form: FormGroup  = new FormGroup({
-    text: new FormControl(null, Validators.required)
-  })
-  notes: Note[] = []
-  constructor(private notesService: NoteService) { }
 
-  ngOnInit(): void {
-    this.notesService.getAll()
-      .subscribe(notes => this.notes = notes);
+export class NotesPageComponent implements OnInit {
+
+  notes$?: Observable<Note[] | undefined> = this._query.selectAll();
+
+  constructor(private noteService: NotesService, private _query: NoteQuery) {}
+  formS = new FormGroup({
+    title: new FormControl('')
+  })
+
+
+  add(input: HTMLInputElement) {
+    this.noteService.add(input.value);
+    input.value = '';
   }
 
+  ngOnInit(): void {
 
-  submit() {
-    if(this.form.valid) {
-      const note: Note = {
-        text: this.form.value.text,
-        date: new Date()
-      }
-
-      this.notesService.create(note).subscribe( () => {
-        this.notes.push(note);
-
-      })
-
-      console.log(note)
-    }
   }
 }

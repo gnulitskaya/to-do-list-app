@@ -11,10 +11,20 @@ export interface Post {
 }
 
 export interface Note {
-  id?: string
-  text: string
-  date: Date
+  id: number,
+  title: string,
+  checked: boolean
 }
+
+//фабричная функция, отвечающая за создания объекта
+export function createNote({id, title}: Note) {
+  return {
+    id,
+    title,
+    checked: false
+  } as Note
+}
+
 
 export interface FbCreateResponse {
   name: string
