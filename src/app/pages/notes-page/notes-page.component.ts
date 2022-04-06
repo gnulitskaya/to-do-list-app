@@ -22,7 +22,6 @@ export class NotesPageComponent implements OnInit {
     title: new FormControl('')
   })
 
-
   add(input: HTMLInputElement) {
     this.noteService.add(input.value);
     input.value = '';

@@ -1,11 +1,20 @@
-<div class="todo-wrapper" *ngIf="posts.length">
-  <app-todo-item *ngFor="let post of posts; let id = index"
-                 [post]="post"
-                 (onRemove)="onRemove(post.id)"
-  ></app-todo-item>
-</div>
+<div class="add-wrapper">
+  <h2>Add todo</h2>
+  <form class="form" [formGroup]="form" (ngSubmit)="add(title.value);">
+    <input #title type="text" formControlName="title" required placeholder="Add new todo" (keydown.enter)="add(title.value)">
+    <div class="btns">
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary fw-bold">Add</button>
+      <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
+    </div>
 
-<button class="btn btn-primary center"
-        routerLink="/todo/add"
->Add new todo</button>
+  </form>
+
+  <ul *ngIf="todos$ | async as todos">
+    <li *ngFor="let tod of todos" class="todo-item">
+      <input type="checkbox" [checked]="tod.completed">
+      <span>{{tod.title}}</span>
+    </li>
+  </ul>
+
+</div>
 

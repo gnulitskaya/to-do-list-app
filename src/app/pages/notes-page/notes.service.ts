@@ -7,7 +7,7 @@ import { NoteStore } from './state/note.store';
 export class NotesService {
   constructor(private _store: NoteStore) {}
 
-  add(title: string) {
+  add(title: string | any) {
     const note = createNote({id: Math.random(), title, checked: false});
     this._store.add(note);
     console.log(this._store);

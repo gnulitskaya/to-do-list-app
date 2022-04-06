@@ -1,8 +1,10 @@
+import { Validators } from '@angular/forms';
+import { Todo, TodoQuery } from './state/todo.store';
+import { Observable } from 'rxjs';
+import { TodoService } from './state/todo.service';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {PostsService} from "../../shared/todo.service";
-import {Post} from "../../shared/interfaces";
-import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-todo-page',
@@ -10,25 +12,19 @@ import {Observable, Subscription} from "rxjs";
   styleUrls: ['./todo-page.component.scss']
 })
 export class TodoPageComponent implements OnInit {
+  todos$?: Observable<Todo[]> = this.todoQuery.selectAll();
+  constructor(private todoService: TodoService, private todoQuery: TodoQuery) { }
 
+  form = new FormGroup({
+    title: new FormControl(null, Validators.required)
+  })
 
-  constructor(private postsService: PostsService) { }
-  posts: Post[] = []
-  dSub?: Subscription
-
+  add(input: string) {
+    this.todoService.updateTodo(input);
+    // this.form.get('title')?.value = '';
+  }
 
   ngOnInit() {
-    this.postsService.getAll()
-      .subscribe(posts => this.posts = posts);
+
   }
-
-  onRemove(id: any) {
-    this.dSub = this.postsService.remove(id).subscribe( () => {
-      //переопределение списка постов
-      //удалим ненужный элемент из массива
-      this.posts = this.posts.filter(post => post.id !== id)
-
-    })
-  }
-
 }

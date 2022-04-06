@@ -1,3 +1,5 @@
+import { TodoStore, TodoQuery } from './pages/todo-page/state/todo.store';
+import { TodoService } from './pages/todo-page/state/todo.service';
 import { NoteStore } from './pages/notes-page/state/note.store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,13 +35,13 @@ registerLocaleData(ruLocale, 'ru');
     AddTodoComponent,
     EditTodoComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule
-    ],
-  providers: [NoteStore],
+  imports: [
+      BrowserModule,
+      AppRoutingModule,
+      ReactiveFormsModule,
+      HttpClientModule
+  ],
+  providers: [NoteStore, TodoService, TodoStore,TodoQuery],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
