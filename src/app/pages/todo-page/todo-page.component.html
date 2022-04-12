@@ -9,10 +9,14 @@
 
   
 
-  <ul *ngIf="todo$ | async as todos">
-    <li *ngFor="let tod of todos" class="todo-item">
-      <input type="checkbox" formControlName="checkbox">
-      <span>{{tod.title}}</span>
+  <ul >
+    <li *ngFor="let todo of todos$ | async" class="todo-item">
+      <div>
+        <input type="checkbox" formControlName="checkbox">
+        <span>{{todo.title}}</span>
+      </div>
+
+      <div class="remove" (click)="delete(todo.id)">x</div>
     </li>
   </ul>
 </form>

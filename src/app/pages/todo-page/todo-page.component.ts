@@ -13,7 +13,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TodoPageComponent implements OnInit {
 
-  todo$: Observable<Todo[]> = this.todoQuery.todos$;
+  todos$: Observable<Todo[]> = this.todoQuery.todos$;
   
   constructor(private todoService: TodoService, private todoQuery: TodoQuery) { }
 
@@ -21,6 +21,12 @@ export class TodoPageComponent implements OnInit {
     title: new FormControl(null, Validators.required),
     checkbox: new FormControl(false)
   })
+
+  ngOnInit() {
+    this.form.get('checkbox')?.valueChanges.subscribe((done: boolean) => {
+      this.todoService.updateStatus(done);
+    })
+  }
 
   add(input: string) {
     if(this.form.get('title')?.value !== '') {
@@ -33,9 +39,8 @@ export class TodoPageComponent implements OnInit {
     this.todoService.updateStatus(checked);
   }
 
-  ngOnInit() {
-    this.form.get('checkbox')?.valueChanges.subscribe((done: boolean) => {
-      this.todoService.updateStatus(done);
-    })
+  delete(id: number) {
+    this.todoService.removeTodo(id);
   }
+
 }

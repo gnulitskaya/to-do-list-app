@@ -16,4 +16,8 @@ export class TodoService {
     this._store.update({completed: newStatus});
     console.log(this._store)
   }
+
+  removeTodo(id: number) {
+    this._store.remove(id);
+  }
 }
