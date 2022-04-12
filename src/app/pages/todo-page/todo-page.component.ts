@@ -12,19 +12,30 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./todo-page.component.scss']
 })
 export class TodoPageComponent implements OnInit {
-  todos$?: Observable<Todo[]> = this.todoQuery.selectAll();
+
+  todo$: Observable<Todo[]> = this.todoQuery.todos$;
+  
   constructor(private todoService: TodoService, private todoQuery: TodoQuery) { }
 
   form = new FormGroup({
-    title: new FormControl(null, Validators.required)
+    title: new FormControl(null, Validators.required),
+    checkbox: new FormControl(false)
   })
 
   add(input: string) {
-    this.todoService.updateTodo(input);
-    // this.form.get('title')?.value = '';
+    if(this.form.get('title')?.value !== '') {
+      this.todoService.addTodo(input);
+      this.form.get('title')?.reset();
+    }
+  }
+
+  update(checked: boolean) {
+    this.todoService.updateStatus(checked);
   }
 
   ngOnInit() {
-
+    this.form.get('checkbox')?.valueChanges.subscribe((done: boolean) => {
+      this.todoService.updateStatus(done);
+    })
   }
 }
