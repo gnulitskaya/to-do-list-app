@@ -9,13 +9,20 @@ import { map } from 'rxjs/operators';
 })
 export class MainLayoutComponent implements OnInit {
   clock$?: Observable<Date>;
+
   constructor() { }
-date: Date = new Date();
+
+  date: Date = new Date();
+
   ngOnInit(): void {
     // this.
     this.clock$ = interval(1000).pipe(
       map( () => new Date() )
       );
   }
+
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('darkMode');
+ }
 
 }

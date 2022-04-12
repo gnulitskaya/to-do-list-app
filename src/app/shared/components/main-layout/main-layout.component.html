@@ -1,9 +1,13 @@
-<div class="wrapper">
+<div class="page__main main">
   <div class="navbar">
-    <h2 *ngIf="clock$ | async">{{clock$ | async | date:'shortTime':'':'ru'}}</h2> 
+    <h2 *ngIf="clock$ | async">{{clock$ | async | date:'shortTime':'':'ru'}}</h2>
     <!-- <h2 *ngIf="!(clock$ | async)">{{date | date:'shortTime':'':'ru'}}</h2> -->
     <span>{{clock$ | async | date:'mediumDate'}}</span>
   </div>
+
+  <mat-slide-toggle (click)="toggleDarkTheme()" >SLEEEP NOW!</mat-slide-toggle>
+  <!-- переделать
+  https://github.com/Flash2104/store-template/blob/master/spa/src/app/toolbar/toolbar.component.ts -->
 
   <div class="main">
     <div class="container">
@@ -16,5 +20,7 @@
       <app-tabs></app-tabs>
     </div>
   </div>
+
+
 
 </div>

@@ -19,6 +19,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AddTodoComponent } from './pages/add-todo/add-todo.component';
 import { EditTodoComponent } from './pages/edit-todo/edit-todo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -39,7 +43,11 @@ registerLocaleData(ruLocale, 'ru');
       BrowserModule,
       AppRoutingModule,
       ReactiveFormsModule,
-      HttpClientModule
+      HttpClientModule,
+      BrowserAnimationsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSlideToggleModule
   ],
   providers: [NoteStore, TodoService, TodoStore,TodoQuery],
   bootstrap: [AppComponent]
