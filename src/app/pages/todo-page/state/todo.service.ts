@@ -19,6 +19,12 @@ export class TodoService {
 
   removeTodo(id: number) {
     this._store.remove(id);
+    console.log(this._store);
+  }
+
+  editText(id: number) {
+    this._store.update({...state, id});
+    console.log(this._store);
   }
 
 

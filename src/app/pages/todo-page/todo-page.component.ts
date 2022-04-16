@@ -19,6 +19,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
   dataSource = new MatTableDataSource<Todo>();
 
+  isEditTodo: boolean = false;
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -49,10 +51,13 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   }
 
   add(input: string) {
-    if(this.form.get('title')?.value !== '') {
+    //when the given input is non-blank
+    input = input.trim();
+    if (!input) { return; }
+    // if(this.form.get('title')?.value !== '' || this.form.invalid) {
       this.todoService.addTodo(input);
       this.form.get('title')?.reset();
-    }
+    // }
   }
 
   update(checked: boolean) {
@@ -64,7 +69,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   }
 
   edit(id: number){
-
+    this.isEditTodo = true;
+    this.todoService.editText(id);
   }
 
   ngOnDestroy(): void {
