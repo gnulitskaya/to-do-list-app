@@ -1,24 +1,28 @@
-// .todo-item {
-//   display: flex;
-//   align-items: center;
-//   margin: 10px 0;
-//   justify-content: space-between;
-//   color: black;
-//   input {
-//     width: auto;
-//   }
-//   .remove {
-//     background-color: red;
-//     color: white;
-//     width: 20px;
-//     height: 20px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
+.todo-list {
+}
+.list {
 
-// }
-// ul {
-//   padding: 0;
-//   margin-top: 50px;
-// }
+		&__item {
+      display: flex;
+      align-items: center;
+		}
+
+		&__checkbox {
+		}
+
+		&__remove {
+		}
+}
+
+.page {
+
+  &__todo {
+  }
+}
+.todo {
+
+  &__title {
+    margin-bottom: 20px;
+  }
+}
+

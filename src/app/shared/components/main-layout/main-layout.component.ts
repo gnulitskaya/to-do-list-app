@@ -11,7 +11,7 @@ export class MainLayoutComponent implements OnInit {
   clock$?: Observable<Date>;
 
   constructor() { }
-
+  showFiller = true;
   date: Date = new Date();
 
   ngOnInit(): void {

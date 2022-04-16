@@ -23,6 +23,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -47,7 +54,14 @@ registerLocaleData(ruLocale, 'ru');
       BrowserAnimationsModule,
       MatFormFieldModule,
       MatInputModule,
-      MatSlideToggleModule
+      MatSlideToggleModule,
+      MatToolbarModule,
+      MatIconModule,
+      MatSidenavModule,
+      MatCardModule,
+      MatButtonModule,
+      MatCheckboxModule,
+      MatTableModule
   ],
   providers: [NoteStore, TodoService, TodoStore,TodoQuery],
   bootstrap: [AppComponent]

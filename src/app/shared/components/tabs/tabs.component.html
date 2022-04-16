@@ -1,14 +1,15 @@
 <div class="tabs-wrapper">
   <div class="tab" routerLink="/notes" routerLinkActive="active">
-    <i class="material-icons-outlined">edit_note</i>
+    <mat-icon [inline]="true">home</mat-icon>
+    <span>HOME</span>
   </div>
   <div class="tab" routerLink="/todo" routerLinkActive="active">
-    <i class="material-icons-outlined">format_list_bulleted</i>
+    <mat-icon [inline]="true">list</mat-icon>
+    <span>MY TASKS</span>
   </div>
-  <div class="tab" routerLink="/bookmarks" routerLinkActive="active">
-    <i class="material-icons-outlined">bookmark_added</i>
-  </div>
+
   <div class="tab" routerLink="/account" routerLinkActive="active">
-    <i class="material-icons-outlined">person</i>
+    <mat-icon [inline]="true">account_box</mat-icon>
+    <span>ACCOUNT</span>
   </div>
 </div>

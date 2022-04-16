@@ -1,29 +1,78 @@
-<div class="add-wrapper">
-  <h2>Add todo</h2>
+<div class="page__todo todo">
+  <h2 class='todo__title'>Add todo</h2>
   <form class="form" [formGroup]="form" (ngSubmit)="add(title.value);">
-    <input #title type="text" formControlName="title" required placeholder="Add new todo" (keydown.enter)="add(title.value);">
+    <mat-form-field appearance="legacy">
+      <mat-label>Add new todo</mat-label>
+      <input #title matInput formControlName="title" placeholder="Add new todo" autocomplete='off' required (keydown.enter)="add(title.value);">
+    </mat-form-field>
     <div class="btns">
-      <button [disabled]="form.invalid" type="submit" class="btn btn-primary fw-bold">Add</button>
+      <button type="submit" [disabled]="form.invalid" mat-flat-button color="primary">Primary</button>
       <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
     </div>
 
-    <mat-form-field appearance="legacy">
-      <mat-label>Legacy form field</mat-label>
-      <input matInput placeholder="Placeholder">
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
 
-  <ul >
-    <li *ngFor="let todo of todos$ | async" class="todo-item">
+
+  <!-- <ul class='todo-list list'>
+    <li *ngFor="let todo of todos$ | async" class="list__item">
       <div>
-        <input type="checkbox" formControlName="checkbox">
+        <mat-checkbox class="list__checkbox" formControlName="checkbox">Checked</mat-checkbox>
         <span>{{todo.title}}</span>
       </div>
 
-      <div class="remove" (click)="delete(todo.id)">x</div>
+      <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="delete(todo.id)" class='list__remove'>
+        <mat-icon>delete</mat-icon>
+      </button>
     </li>
-  </ul>
+  </ul> -->
+
+  <mat-form-field appearance="standard">
+    <mat-label>Find</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="delete(element.id)" mat-flat-button color="warn" aria-label="Example icon button with a delete icon" class='list__remove'>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="edit(element.id)" mat-flat-button color="primary" aria-label="Example icon button with a delete icon" class='list__remove'>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+
 </form>
 </div>
 
