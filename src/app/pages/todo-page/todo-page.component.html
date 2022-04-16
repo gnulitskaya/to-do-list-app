@@ -47,8 +47,8 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Task </th>
       <td mat-cell *matCellDef="let element">
-        <span>{{element.title}}</span>
-        <span *ngIf="isEditTodo"></span> </td>
+        <span *ngIf="!isEditTodo">{{element.title}}</span>
+        <span *ngIf="isEditTodo">lera</span> </td>
     </ng-container>
 
     <ng-container matColumnDef="delete">

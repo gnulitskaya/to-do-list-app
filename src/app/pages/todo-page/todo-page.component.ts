@@ -54,10 +54,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     //when the given input is non-blank
     input = input.trim();
     if (!input) { return; }
-    // if(this.form.get('title')?.value !== '' || this.form.invalid) {
       this.todoService.addTodo(input);
       this.form.get('title')?.reset();
-    // }
   }
 
   update(checked: boolean) {
