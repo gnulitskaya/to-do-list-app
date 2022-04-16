@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
 
-  displayedColumns: string[] = ['position', 'name', 'delete', 'edit'];
+  displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
   dataSource = new MatTableDataSource<Todo>();
 
   applyFilter(event: Event) {
@@ -64,7 +64,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   }
 
   edit(id: number){
-    
+
   }
 
   ngOnDestroy(): void {
