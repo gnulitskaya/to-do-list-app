@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { StoreConfig, EntityStore, EntityState, QueryEntity } from '@datorama/akita';
+import { StoreConfig, EntityStore, EntityState, QueryEntity, ID } from '@datorama/akita';
 import { Observable } from 'rxjs';
 
 export interface Todo {
-   id: number,
-   title: string | null,
+   id: ID,
+   title: string,
    completed: boolean
 }
 
@@ -21,7 +21,7 @@ export class TodoStore extends EntityStore<TodosState> {
 @Injectable()
 export class TodoQuery extends QueryEntity<TodosState> {
   todos$: Observable<Todo[]> = this.selectAll();
-  
+
   constructor(protected store: TodoStore) {
     super(store);
   }

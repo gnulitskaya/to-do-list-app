@@ -1,4 +1,4 @@
-<div class="add-wrapper" *ngIf="editForm">
+<!-- <div class="add-wrapper">
   <h2>Edit todo</h2>
   <form [formGroup]="editForm" class="form" (ngSubmit)="submit()">
     <input id="text" type="text" formControlName="text" required >
@@ -6,5 +6,20 @@
       <button type="submit" class="btn btn-primary fw-bold">Save</button>
       <button routerLink="/todo" class="btn btn-dark">Cancel</button>
     </div>
+  </form>
+</div> -->
+<h2>Edit todo</h2>
+
+<div class="page__edit">
+  <form [formGroup]="form">
+    <mat-form-field appearance="legacy">
+      <mat-label>Edit todo</mat-label>
+      <input #title matInput formControlName="title" placeholder="Add new todo" autocomplete='off' required>
+    </mat-form-field>
+    <div class="btns">
+      <button type="submit" [disabled]="form.invalid" mat-flat-button color="primary">Primary</button>
+      <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
+    </div>
+
   </form>
 </div>

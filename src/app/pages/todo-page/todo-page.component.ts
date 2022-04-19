@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ID } from '@datorama/akita';
 
 @Component({
   selector: 'app-todo-page',
@@ -19,7 +20,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
   dataSource = new MatTableDataSource<Todo>();
 
-  isEditTodo: boolean = false;
+  active$?: Observable<ID>;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -35,7 +36,13 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     checkbox: new FormControl(false)
   })
 
+  editForm = new FormGroup({
+    title: new FormControl(null, Validators.required),
+  })
+
   ngOnInit() {
+    this.active$ = this.todoQuery.selectActiveId();
+
     this.form.get('checkbox')?.valueChanges.pipe(
       takeUntil(this._destroy$)
     ).subscribe((done: boolean) => {
@@ -62,14 +69,18 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this.todoService.updateStatus(checked);
   }
 
-  delete(id: number) {
+  delete(id: ID) {
     this.todoService.removeTodo(id);
   }
 
-  edit(id: number){
-    this.isEditTodo = true;
-    this.todoService.editText(id);
+  setActive(id: ID) {
+    this.todoService.setActive(id);
   }
+
+  // edit(id: number){
+  //   this.isEditTodo = true;
+  //   this.todoService.editText(id);
+  // }
 
   ngOnDestroy(): void {
     this._destroy$.next()

@@ -47,8 +47,8 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Task </th>
       <td mat-cell *matCellDef="let element">
-        <span *ngIf="!isEditTodo">{{element.title}}</span>
-        <span *ngIf="isEditTodo">lera</span> </td>
+        <span>{{element.title}}</span>
+        <!-- <span *ngIf="isEditTodo">lera</span> </td> -->
     </ng-container>
 
     <ng-container matColumnDef="delete">
@@ -63,7 +63,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let element">
-        <button (click)="edit(element.id)" mat-flat-button color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
+        <button (click)="setActive(element.id)" mat-flat-button color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -80,5 +80,20 @@
 
 
 </form>
+
+<div *ngIf="active$ | async" class="page__edit">
+  <form [formGroup]="editForm">
+    <mat-form-field appearance="legacy">
+      <mat-label>Edit todo</mat-label>
+      <input #title matInput formControlName="title" placeholder="Add new todo" autocomplete='off' required>
+    </mat-form-field>
+    <div class="btns">
+      <button type="submit" [disabled]="editForm.invalid" mat-flat-button color="primary">Primary</button>
+      <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
+    </div>
+
+  </form>
+</div>
+
 </div>
 
