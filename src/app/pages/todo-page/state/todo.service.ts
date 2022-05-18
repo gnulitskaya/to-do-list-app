@@ -2,14 +2,16 @@ import { ID } from '@datorama/akita';
 import { TodoStore } from './todo.store';
 import { Injectable } from '@angular/core';
 import { state } from '@angular/animations';
+import { createTodo, Todo } from 'src/app/shared/interfaces';
 
 @Injectable()
 
 export class TodoService {
   constructor(private _store: TodoStore) {}
 
-  addTodo(newTitle: string) {
-    this._store.add({id: Math.random(), title: newTitle, completed: false});
+  addTodo(title: string) {
+    const todo = createTodo({ id: Math.random(), title });
+    this._store.add(todo);
     console.log(this._store)
   }
 
@@ -18,15 +20,14 @@ export class TodoService {
     console.log(this._store);
   }
 
-  updateStatus(newStatus: boolean) {
-    this._store.update({completed: newStatus});
-    console.log(this._store)
+  updateStatus({ id, completed }: Todo) {
+    this._store.update(id, {
+      completed
+    });
   }
 
-  setActive(id: ID) {
-    this._store.setActive(id);
-    console.log(this._store)
-  }
-
-
+  // setActive(id: ID) {
+  //   this._store.setActive(id);
+  //   console.log(this._store)
+  // }
 }

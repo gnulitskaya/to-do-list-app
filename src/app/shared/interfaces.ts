@@ -1,31 +1,20 @@
+import { ID } from '@datorama/akita';
+
 export interface FbAuthResponse {
   idToken: string
   expiresIn: string
 }
 
-export interface Post {
-  id?: string
-  text: string
-  date: Date
-  completed: boolean
-}
+export type Todo = {
+  id: ID;
+  title: string;
+  completed: boolean;
+};
 
-export interface Note {
-  id: number,
-  title: string,
-  checked: boolean
-}
-
-//фабричная функция, отвечающая за создания объекта
-export function createNote({id, title}: Note) {
+export function createTodo({ id, title }: Partial<Todo>) {
   return {
     id,
     title,
-    checked: false
-  } as Note
-}
-
-
-export interface FbCreateResponse {
-  name: string
+    completed: false
+  } as Todo;
 }

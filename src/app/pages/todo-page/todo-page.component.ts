@@ -17,15 +17,15 @@ import { ID } from '@datorama/akita';
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
 
-  displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
-  dataSource = new MatTableDataSource<Todo>();
+  // displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
+  // dataSource = new MatTableDataSource<Todo>();
 
-  active$?: Observable<ID>;
+  // active$?: Observable<ID>;
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
   todos$: Observable<Todo[]> = this.todoQuery.todos$.pipe(takeUntil(this._destroy$));
 
@@ -36,24 +36,20 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     checkbox: new FormControl(false)
   })
 
-  editForm = new FormGroup({
-    title: new FormControl(null, Validators.required),
-  })
-
   ngOnInit() {
-    this.active$ = this.todoQuery.selectActiveId();
+    // this.active$ = this.todoQuery.selectActiveId();
 
     this.form.get('checkbox')?.valueChanges.pipe(
       takeUntil(this._destroy$)
-    ).subscribe((done: boolean) => {
-      this.todoService.updateStatus(done);
+    ).subscribe((todo: Todo) => {
+      this.todoService.updateStatus(todo);
     })
 
-    this.todoQuery.selectAll().pipe(
-      takeUntil(this._destroy$)
-    ).subscribe(v => {
-      this.dataSource.data = v as Todo[];
-    });
+    // this.todoQuery.selectAll().pipe(
+    //   takeUntil(this._destroy$)
+    // ).subscribe(v => {
+    //   this.dataSource.data = v as Todo[];
+    // });
 
   }
 
@@ -65,17 +61,17 @@ export class TodoPageComponent implements OnInit, OnDestroy {
       this.form.get('title')?.reset();
   }
 
-  update(checked: boolean) {
-    this.todoService.updateStatus(checked);
+  update(todo: Todo) {
+    this.todoService.updateStatus(todo);
   }
 
   delete(id: ID) {
     this.todoService.removeTodo(id);
   }
 
-  setActive(id: ID) {
-    this.todoService.setActive(id);
-  }
+  // setActive(id: ID) {
+  //   this.todoService.setActive(id);
+  // }
 
   // edit(id: number){
   //   this.isEditTodo = true;

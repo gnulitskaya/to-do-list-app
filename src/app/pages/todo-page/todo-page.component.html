@@ -10,12 +10,10 @@
       <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
     </div>
 
-
-
-  <!-- <ul class='todo-list list'>
+  <ul class='todo-list list'>
     <li *ngFor="let todo of todos$ | async" class="list__item">
       <div>
-        <mat-checkbox class="list__checkbox" formControlName="checkbox">Checked</mat-checkbox>
+        <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>
         <span>{{todo.title}}</span>
       </div>
 
@@ -23,9 +21,9 @@
         <mat-icon>delete</mat-icon>
       </button>
     </li>
-  </ul> -->
+  </ul>
 
-  <mat-form-field appearance="standard">
+  <!-- <mat-form-field appearance="standard">
     <mat-label>Find</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
@@ -48,7 +46,7 @@
       <th mat-header-cell *matHeaderCellDef> Task </th>
       <td mat-cell *matCellDef="let element">
         <span>{{element.title}}</span>
-        <!-- <span *ngIf="isEditTodo">lera</span> </td> -->
+
     </ng-container>
 
     <ng-container matColumnDef="delete">
@@ -63,7 +61,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let element">
-        <button (click)="setActive(element.id)" mat-flat-button color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
+        <button mat-flat-button color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -72,16 +70,15 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
-  </table>
+  </table> -->
 
 
 </form>
 
-<div *ngIf="active$ | async" class="page__edit">
+<!-- <div class="page__edit">
   <form [formGroup]="editForm">
     <mat-form-field appearance="legacy">
       <mat-label>Edit todo</mat-label>
@@ -89,11 +86,11 @@
     </mat-form-field>
     <div class="btns">
       <button type="submit" [disabled]="editForm.invalid" mat-flat-button color="primary">Primary</button>
-      <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
+
     </div>
 
   </form>
-</div>
+</div> -->
 
 </div>
 
