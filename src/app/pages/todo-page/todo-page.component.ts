@@ -28,7 +28,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   // }
 
   todos$: Observable<Todo[]> = this.todoQuery.todos$.pipe(takeUntil(this._destroy$));
-
+  selectedTodo: Todo | null = null;
   constructor(private todoService: TodoService, private todoQuery: TodoQuery) { }
 
   form = new FormGroup({
@@ -39,8 +39,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // this.active$ = this.todoQuery.selectActiveId();
 
-    this.form.get('checkbox')?.valueChanges.subscribe((completed: boolean) => {
-      this.todoService.updateStatus({ completed } as Todo);
+    this.form.controls['checkbox']?.valueChanges.subscribe((completed: boolean) => {
+      this.todoService.updateStatus(this.selectedTodo?.id || 0, completed );
     })
 
     // this.todoQuery.selectAll().pipe(
@@ -51,16 +51,16 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   }
 
+  onSelectTodo(todo: Todo): void {
+    this.selectedTodo = todo;
+  }
+
   add(input: string) {
     //when the given input is non-blank
     input = input.trim();
     if (!input) { return; }
       this.todoService.addTodo(input);
       this.form.get('title')?.reset();
-  }
-
-  update(todo: Todo) {
-    this.todoService.updateStatus(todo);
   }
 
   delete(id: ID) {

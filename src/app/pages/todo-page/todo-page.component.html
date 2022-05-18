@@ -12,14 +12,22 @@
 
   <ul class='todo-list list'>
     <li *ngFor="let todo of todos$ | async" class="list__item">
-      <div>
+      <div class='list__item-box' (click)="onSelectTodo(todo)">
         <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>
         <span>{{todo.title}}</span>
       </div>
 
-      <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="delete(todo.id)" class='list__remove'>
-        <mat-icon>delete</mat-icon>
-      </button>
+      <div class='list__item-box'>
+
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="delete(todo.id)" class='list__remove'>
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
     </li>
   </ul>
 

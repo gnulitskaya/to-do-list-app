@@ -1,21 +1,29 @@
 .todo-list {
+  margin-top: 40px;
 }
 .list {
 
 		&__item {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
 		}
 
 		&__checkbox {
+
 		}
+    &__item-box {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
 		&__remove {
 		}
 }
-
+// mat-checkbox ::ng-deep .mat-checkbox-inner-container {width: 25px;height: 25px;}
 .page {
-
   &__todo {
   }
 }
