@@ -1,20 +1,46 @@
-<div class="wrapper">
-  <div class="navbar">
-<!--    <h1>duMMy</h1>-->
-    <h2>{{date | date:'shortTime':'':'ru'}}</h2>
-    <span>{{date | date:'mediumDate'}}</span>
-  </div>
+<div class="page__main main">
+  <mat-toolbar>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <span>DUMMY</span>
+    <span class="example-spacer"></span>
+    <mat-slide-toggle (click)="toggleDarkTheme()" >SLEEEP NOW!</mat-slide-toggle>
+  </mat-toolbar>
 
-  <div class="main">
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+  <!-- переделать
+  https://github.com/Flash2104/store-template/blob/master/spa/src/app/toolbar/toolbar.component.ts -->
 
-  <div class="bottom">
-    <div class="container">
+  <mat-drawer-container class="container" autosize>
+
+    <mat-drawer opened="true" #drawer class="sidenav" mode="side">
       <app-tabs></app-tabs>
+    </mat-drawer>
+
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+
+    <div class="sidenav-content content">
+      <div class="content__header header">
+        <mat-card class='header__time time'>
+          <mat-card-title class='time__title' *ngIf="clock$ | async">{{clock$ | async | date:'shortTime':'':'ru'}}</mat-card-title>
+          <mat-card-subtitle class='time__subtitle'>{{clock$ | async | date:'mediumDate'}}</mat-card-subtitle>
+          <!-- <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions> -->
+        </mat-card>
+      </div>
+
+      <div class="main">
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </div>
-  </div>
+
+  </mat-drawer-container>
+
 
 </div>

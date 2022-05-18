@@ -1,21 +1,20 @@
+import { ID } from '@datorama/akita';
+
 export interface FbAuthResponse {
   idToken: string
   expiresIn: string
 }
 
-export interface Post {
-  id?: string
-  text: string
-  date: Date
-  completed: boolean
-}
+export type Todo = {
+  id: ID;
+  title: string;
+  completed: boolean;
+};
 
-export interface Note {
-  id?: string
-  text: string
-  date: Date
-}
-
-export interface FbCreateResponse {
-  name: string
+export function createTodo({ id, title }: Partial<Todo>) {
+  return {
+    id,
+    title,
+    completed: false
+  } as Todo;
 }

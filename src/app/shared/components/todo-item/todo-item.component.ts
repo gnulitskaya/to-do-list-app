@@ -1,6 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Post} from "../../interfaces";
-import {PostsService} from "../../todo.service";
 
 @Component({
   selector: 'app-todo-item',
@@ -10,9 +8,8 @@ import {PostsService} from "../../todo.service";
 
 export class TodoItemComponent implements OnInit {
   @Output() onRemove = new EventEmitter<any>();
-  @Input() post!: Post
 
-  constructor(private postsService: PostsService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -20,11 +17,4 @@ export class TodoItemComponent implements OnInit {
   remove(id: any) {
     this.onRemove.emit(id);
   }
-  onToggle(post: Post) {
-    // Toggle in UI
-    post.completed = !post.completed;
-    // Toggle on server
-    this.postsService.toggleCompleted(post).subscribe(post => console.log(post));
-  }
-
 }

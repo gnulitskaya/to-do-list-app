@@ -1,11 +1,96 @@
-<div class="todo-wrapper" *ngIf="posts.length">
-  <app-todo-item *ngFor="let post of posts; let id = index"
-                 [post]="post"
-                 (onRemove)="onRemove(post.id)"
-  ></app-todo-item>
-</div>
+<div class="page__todo todo">
+  <h2 class='todo__title'>Add todo</h2>
+  <form class="form" [formGroup]="form" (ngSubmit)="add(title.value);">
+    <mat-form-field appearance="legacy">
+      <mat-label>Add new todo</mat-label>
+      <input #title matInput formControlName="title" placeholder="Add new todo" autocomplete='off' required (keydown.enter)="add(title.value);">
+    </mat-form-field>
+    <div class="btns">
+      <button type="submit" [disabled]="form.invalid" mat-flat-button color="primary">Primary</button>
+      <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
+    </div>
 
-<button class="btn btn-primary center"
-        routerLink="/todo/add"
->Add new todo</button>
+  <ul class='todo-list list'>
+    <li *ngFor="let todo of todos$ | async" class="list__item">
+      <div>
+        <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>
+        <span>{{todo.title}}</span>
+      </div>
+
+      <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="delete(todo.id)" class='list__remove'>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+
+  <!-- <mat-form-field appearance="standard">
+    <mat-label>Find</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element; let idx = index"> {{idx + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Task </th>
+      <td mat-cell *matCellDef="let element">
+        <span>{{element.title}}</span>
+
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="delete(element.id)" mat-flat-button color="warn" aria-label="Example icon button with a delete icon" class='list__remove'>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-flat-button color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table> -->
+
+
+</form>
+
+<!-- <div class="page__edit">
+  <form [formGroup]="editForm">
+    <mat-form-field appearance="legacy">
+      <mat-label>Edit todo</mat-label>
+      <input #title matInput formControlName="title" placeholder="Add new todo" autocomplete='off' required>
+    </mat-form-field>
+    <div class="btns">
+      <button type="submit" [disabled]="editForm.invalid" mat-flat-button color="primary">Primary</button>
+
+    </div>
+
+  </form>
+</div> -->
+
+</div>
 
