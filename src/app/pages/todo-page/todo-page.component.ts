@@ -33,16 +33,14 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   form = new FormGroup({
     title: new FormControl(null, Validators.required),
-    checkbox: new FormControl(false)
+    checkbox: new FormControl(null)
   })
 
   ngOnInit() {
     // this.active$ = this.todoQuery.selectActiveId();
 
-    this.form.get('checkbox')?.valueChanges.pipe(
-      takeUntil(this._destroy$)
-    ).subscribe((todo: Todo) => {
-      this.todoService.updateStatus(todo);
+    this.form.get('checkbox')?.valueChanges.subscribe((completed: boolean) => {
+      this.todoService.updateStatus({ completed } as Todo);
     })
 
     // this.todoQuery.selectAll().pipe(

@@ -26,6 +26,14 @@ export class TodoService {
     });
   }
 
+  // updateStatus(completed: boolean) {
+  //   this._store.update(state => ({
+  //     ...state,
+  //     completed
+  //   }));
+  //   console.log(this._store);
+  // }
+
   // setActive(id: ID) {
   //   this._store.setActive(id);
   //   console.log(this._store)
