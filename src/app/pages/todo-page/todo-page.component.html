@@ -10,9 +10,9 @@
       <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
     </div>
 
-  <ul class='todo-list list'>
-    <mat-card>
-      <li *ngFor="let todo of todos$ | async" class="list__item">
+  <ul class='todo-list list' *ngIf="todos$ | async as todos">
+    <mat-card *ngIf="todos.length > 0">
+      <li *ngFor="let todo of todos" class="list__item">
       <div class='list__item-box' (click)="onSelectTodo(todo)">
         <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>
         <ng-container *ngIf="selectedEdit !== todo.id; else editText">

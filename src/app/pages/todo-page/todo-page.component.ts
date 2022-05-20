@@ -1,4 +1,4 @@
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil, filter } from 'rxjs/operators';
 import { Validators } from '@angular/forms';
 import { Todo, TodoQuery } from './state/todo.store';
 import { Observable, Subject } from 'rxjs';
@@ -16,7 +16,7 @@ import { ID } from '@datorama/akita';
 })
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
-  selectedEdit: ID | null = null;
+
   // displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
   // dataSource = new MatTableDataSource<Todo>();
 
@@ -27,8 +27,10 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   //   this.dataSource.filter = filterValue.trim().toLowerCase();
   // }
 
-  todos$: Observable<Todo[]> = this.todoQuery.todos$.pipe(takeUntil(this._destroy$));
+  todos$: Observable<Todo[]> = this.todoQuery.todos$.pipe(
+    takeUntil(this._destroy$));
   selectedTodo: Todo | null = null;
+  selectedEdit: ID | null = null;
   constructor(private todoService: TodoService, private todoQuery: TodoQuery) { }
 
   form = new FormGroup({
