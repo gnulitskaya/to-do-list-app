@@ -14,12 +14,17 @@
     <li *ngFor="let todo of todos$ | async" class="list__item">
       <div class='list__item-box' (click)="onSelectTodo(todo)">
         <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>
-        <span>{{todo.title}}</span>
+        <ng-container *ngIf="selectedEdit !== todo.id; else editText">
+          <span>{{todo.title}}</span>
+        </ng-container>
+        <ng-template #editText>
+          <input formControlName="titleEdit" #titleEdit matInput  placeholder="Edit todo" (keydown.enter)="saveEditTodo(titleEdit.value, todo.id);">
+        </ng-template>
       </div>
 
       <div class='list__item-box'>
 
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
+        <button (click)="editTodo(todo.id)" mat-fab color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
           <mat-icon>edit</mat-icon>
         </button>
 

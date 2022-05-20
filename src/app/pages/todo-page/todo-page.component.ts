@@ -16,7 +16,7 @@ import { ID } from '@datorama/akita';
 })
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
-
+  selectedEdit: ID | null = null;
   // displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
   // dataSource = new MatTableDataSource<Todo>();
 
@@ -33,7 +33,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   form = new FormGroup({
     title: new FormControl(null, Validators.required),
-    checkbox: new FormControl(null)
+    checkbox: new FormControl(null),
+    titleEdit: new FormControl(null)
   })
 
   ngOnInit() {
@@ -65,6 +66,14 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   delete(id: ID) {
     this.todoService.removeTodo(id);
+  }
+
+  saveEditTodo(titleEdit: string, id: ID) {
+    this.todoService.editTitle(id || 0, titleEdit);
+  }
+
+  editTodo(id: ID): void {
+    this.selectedEdit = id;
   }
 
   // setActive(id: ID) {

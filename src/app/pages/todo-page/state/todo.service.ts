@@ -26,6 +26,12 @@ export class TodoService {
     });
   }
 
+  editTitle( id: ID, title: string) {
+    this._store.update(id, {
+      title
+    });
+  }
+
   // updateStatus(completed: boolean) {
   //   this._store.update(state => ({
   //     ...state,
