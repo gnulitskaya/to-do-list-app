@@ -26,6 +26,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
+import {TodosComponent} from "./pages/todo-page/todos.component";
+import {TodoComponent} from "./pages/todo-page/todo.component";
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -37,7 +39,9 @@ registerLocaleData(ruLocale, 'ru');
     TodoPageComponent,
     AccountPageComponent,
     TodoItemComponent,
-    EditTodoComponent
+    EditTodoComponent,
+    TodosComponent,
+    TodoComponent
   ],
   imports: [
       BrowserModule,

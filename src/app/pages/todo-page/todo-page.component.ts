@@ -17,18 +17,9 @@ import { ID } from '@datorama/akita';
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
 
-  // displayedColumns: string[] = ['position', 'status', 'name', 'delete', 'edit'];
-  // dataSource = new MatTableDataSource<Todo>();
-
-  // active$?: Observable<ID>;
-
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-
-  todos$: Observable<Todo[]> = this.todoQuery.todos$.pipe(
+  todos$: Observable<Todo[] | null> = this.todoQuery.todos$.pipe(
     takeUntil(this._destroy$));
+
   selectedTodo: Todo | null = null;
   selectedEdit: ID | null = null;
   constructor(private todoService: TodoService, private todoQuery: TodoQuery) { }
@@ -40,17 +31,10 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit() {
-    // this.active$ = this.todoQuery.selectActiveId();
 
     this.form.controls['checkbox']?.valueChanges.subscribe((completed: boolean) => {
       this.todoService.updateStatus(this.selectedTodo?.id || 0, completed );
     })
-
-    // this.todoQuery.selectAll().pipe(
-    //   takeUntil(this._destroy$)
-    // ).subscribe(v => {
-    //   this.dataSource.data = v as Todo[];
-    // });
 
   }
 
@@ -80,15 +64,6 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this.selectedEdit = id;
     this.form.get('titleEdit')?.reset();
   }
-
-  // setActive(id: ID) {
-  //   this.todoService.setActive(id);
-  // }
-
-  // edit(id: number){
-  //   this.isEditTodo = true;
-  //   this.todoService.editText(id);
-  // }
 
   ngOnDestroy(): void {
     this._destroy$.next()

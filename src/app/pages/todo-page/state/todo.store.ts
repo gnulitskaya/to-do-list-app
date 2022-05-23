@@ -20,7 +20,7 @@ export class TodoStore extends EntityStore<TodosState> {
 
 @Injectable()
 export class TodoQuery extends QueryEntity<TodosState> {
-  todos$: Observable<Todo[]> = this.selectAll();
+  todos$: Observable<Todo[] | null> = this.selectAll();
 
   constructor(protected store: TodoStore) {
     super(store);
