@@ -20,9 +20,9 @@ import {FormControl} from "@angular/forms";
       </div>
 
       <div class='list__item-box'>
-<!--        <button (click)="editTodo(todo.id)" mat-fab color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>-->
-<!--          <mat-icon>edit</mat-icon>-->
-<!--        </button>-->
+        <button (click)="onEditClick(todo.id)" mat-fab color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>
+          <mat-icon>edit</mat-icon>
+        </button>
 
         <button mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="onDeleteClick(todo.id)" class='list__remove'>
           <mat-icon>delete</mat-icon>
@@ -38,10 +38,14 @@ export class TodoComponent implements OnInit{
 
   @Output() delete : EventEmitter<ID>  = new EventEmitter<ID>();
   @Output() complete : EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Output() edit: EventEmitter<ID> = new EventEmitter<ID>();
   checkbox: FormControl;
 
   onDeleteClick(id: ID) {
     this.delete.emit(id);
+  }
+  onEditClick(id: ID) {
+    this.edit.emit(id);
   }
 
   ngOnInit(): void {

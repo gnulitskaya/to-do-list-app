@@ -11,6 +11,7 @@ import {ID} from "@datorama/akita";
                 (delete)="onDeleteClick($event)"
                 [todo]="todo"
                 (complete)="complete.emit($event)"
+                (edit)="onEditClick($event)"
       ></app-todo>
     </ul>
   `,
@@ -20,9 +21,12 @@ export class TodosComponent {
   @Output() complete = new EventEmitter<Todo>();
 
   @Output() delete: EventEmitter<ID> = new EventEmitter<ID>();
+  @Output() edit: EventEmitter<ID> = new EventEmitter<ID>();
 
   onDeleteClick(id: ID): void {
     this.delete.emit(id);
   }
-
+  onEditClick(id: ID): void {
+    this.edit.emit(id);
+  }
 }
