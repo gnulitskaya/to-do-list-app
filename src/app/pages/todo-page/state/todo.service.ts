@@ -26,7 +26,7 @@ export class TodoService {
     });
   }
 
-  editTitle( id: ID, title: string) {
+  editTitle({id, title}: Todo) {
     this._store.update(id, {
       title
     });

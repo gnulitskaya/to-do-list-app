@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
 import {Todo} from "../../shared/interfaces";
 import {ID} from "@datorama/akita";
 import {FormControl, FormGroup} from "@angular/forms";
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo',
@@ -16,7 +17,8 @@ import {FormControl, FormGroup} from "@angular/forms";
           <span>{{todo.title}}</span>
         </ng-container>
         <ng-template #editText>
-          <input matInput placeholder="Edit todo" formControlName="titleEdit" >
+          <input matInput placeholder="Edit todo" formControlName="title" #title
+        >
 <!--          <span>edit</span>-->
         </ng-template>
       </div>
@@ -37,11 +39,14 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class TodoComponent implements OnInit{
 
+  // @ViewChild('titleEdit') titleEditElement: ElementRef<HTMLInputElement>;
+
   @Input() todo: Todo;
 
   @Output() delete : EventEmitter<ID>  = new EventEmitter<ID>();
   @Output() complete : EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output() edit: EventEmitter<ID> = new EventEmitter<ID>();
+  @Output() saveEditTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   checkbox: FormControl;
 
@@ -61,13 +66,30 @@ export class TodoComponent implements OnInit{
     this.checkbox = new FormControl(this.todo.completed);
 
     this.todoForm = new FormGroup({
-      titleEdit: new FormControl(this.todo.title),
+      title: new FormControl(this.todo.title),
     })
 
     this.checkbox.valueChanges.subscribe((completed: boolean) => {
       this.complete.emit({ ...this.todo, completed });
     });
+
+    this.todoForm.controls['title'].valueChanges
+    .pipe(
+      debounceTime(2000),
+      map((title: string) => {
+      this.saveEditTodo.emit({ ...this.todo, title });
+    })
+    )
+    .subscribe();
   }
+
+  // onEnter(): void {
+  //   this.saveEditTodo.emit();
+  // }
+
+  // ngAfterViewInit(): void {
+  //   this.titleEditElement.nativeElement.focus();
+  // }
 
 
 }

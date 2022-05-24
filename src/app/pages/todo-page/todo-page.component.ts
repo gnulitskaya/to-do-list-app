@@ -54,10 +54,10 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this.todoService.removeTodo(id);
   }
 
-  saveEditTodo(titleEdit: string, id: ID) {
-    this.todoService.editTitle(id, titleEdit);
+  saveEditTodo(todo: Todo) {
+    this.todoService.editTitle(todo);
     // this.form.get('titleEdit')?.reset();
-    this.selectedEdit = null;
+    // this.selectedEdit = null;
   }
 
   complete(todo: Todo) {
