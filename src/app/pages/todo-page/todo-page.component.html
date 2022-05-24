@@ -10,7 +10,8 @@
       <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
     </div>
 
-    <app-todos [todos]="todos$ | async" (delete)="delete($event)"></app-todos>
+    <app-todos [todos]="todos$ | async" (delete)="delete($event)" (complete)="complete($event)">
+    </app-todos>
 
 <!--  <ul class='todo-list list' *ngIf="todos$ | async as todos">-->
 <!--    <mat-card *ngIf="todos.length > 0">-->

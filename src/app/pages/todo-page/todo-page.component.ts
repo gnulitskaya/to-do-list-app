@@ -32,9 +32,9 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.form.controls['checkbox']?.valueChanges.subscribe((completed: boolean) => {
-      this.todoService.updateStatus(this.selectedTodo?.id || 0, completed );
-    })
+    // this.form.controls['checkbox']?.valueChanges.subscribe((completed: boolean) => {
+    //   this.todoService.updateStatus(this.selectedTodo?.id || 0, completed );
+    // })
 
   }
 
@@ -58,6 +58,10 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this.todoService.editTitle(id, titleEdit);
     // this.form.get('titleEdit')?.reset();
     this.selectedEdit = null;
+  }
+
+  complete(todo: Todo) {
+    this.todoService.updateStatus(todo);
   }
 
   editTodo(id: ID): void {

@@ -1,13 +1,15 @@
 .todo-list {
   margin-top: 40px;
 }
+mat-card {
+  margin-bottom: 20px;
+}
 .list {
 
 		&__item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
 		}
 
 		&__checkbox {

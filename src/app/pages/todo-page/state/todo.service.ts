@@ -20,7 +20,7 @@ export class TodoService {
     console.log(this._store);
   }
 
-  updateStatus( id: ID, completed: boolean) {
+  updateStatus( {id, completed}: Todo) {
     this._store.update(id, {
       completed
     });
