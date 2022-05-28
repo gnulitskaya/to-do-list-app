@@ -10,35 +10,8 @@
       <!-- <button routerLink="/todo" class="btn btn-dark">Cancel</button> -->
     </div>
 
-    <app-todos [todos]="todos$ | async" (delete)="delete($event)" (complete)="complete($event)" (save)="complete($event)" (edit)="editTodo($event)">
+    <app-todos [todos]="todos$ | async" (delete)="delete($event)" (complete)="complete($event)" (save)="saveEditTodo($event)" (edit)="editTodo($event)">
     </app-todos>
-
-<!--  <ul class='todo-list list' *ngIf="todos$ | async as todos">-->
-<!--    <mat-card *ngIf="todos.length > 0">-->
-<!--      <li *ngFor="let todo of todos" class="list__item">-->
-<!--      <div class='list__item-box' (click)="onSelectTodo(todo)">-->
-<!--        <mat-checkbox class="list__checkbox" formControlName="checkbox"></mat-checkbox>-->
-<!--        <ng-container *ngIf="selectedEdit !== todo.id; else editText">-->
-<!--          <span>{{todo.title}}</span>-->
-<!--        </ng-container>-->
-<!--        <ng-template #editText>-->
-<!--          <input formControlName="titleEdit" #titleEdit matInput  placeholder="Edit todo" (keydown.enter)="saveEditTodo(titleEdit.value, todo.id);">-->
-<!--        </ng-template>-->
-<!--      </div>-->
-
-<!--      <div class='list__item-box'>-->
-<!--        <button (click)="editTodo(todo.id)" mat-fab color="primary" aria-label="Example icon button with a delete icon" class='list__edit'>-->
-<!--          <mat-icon>edit</mat-icon>-->
-<!--        </button>-->
-
-<!--        <button mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="delete(todo.id)" class='list__remove'>-->
-<!--          <mat-icon>delete</mat-icon>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      </li>-->
-<!--    </mat-card>-->
-<!--  </ul>-->
-
   </form>
 
 </div>

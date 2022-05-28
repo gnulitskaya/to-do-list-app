@@ -17,7 +17,7 @@ import { debounceTime, map } from 'rxjs/operators';
           <span>{{todo.title}}</span>
         </ng-container>
         <ng-template #editText>
-          <input matInput placeholder="Edit todo" formControlName="title" #title
+          <input matInput placeholder="Edit todo" formControlName="title" #title (keydown.enter)="onSaveClick(title.value)"
         >
 <!--          <span>edit</span>-->
         </ng-template>
@@ -55,6 +55,9 @@ export class TodoComponent implements OnInit{
   onDeleteClick(id: ID) {
     this.delete.emit(id);
   }
+  onSaveClick(title: string) {
+    this.saveEditTodo.emit({ ...this.todo, title });
+  }
   onEditClick(id: ID) {
     this.edit.emit(id);
     this.selectedEdit = id;
@@ -73,14 +76,14 @@ export class TodoComponent implements OnInit{
       this.complete.emit({ ...this.todo, completed });
     });
 
-    this.todoForm.controls['title'].valueChanges
-    .pipe(
-      debounceTime(2000),
-      map((title: string) => {
-      this.saveEditTodo.emit({ ...this.todo, title });
-    })
-    )
-    .subscribe();
+    // this.todoForm.controls['title'].valueChanges
+    // .pipe(
+    //   debounceTime(2000),
+    //   map((title: string) => {
+    //   this.saveEditTodo.emit({ ...this.todo, title });
+    // })
+    // )
+    // .subscribe();
   }
 
   // onEnter(): void {
