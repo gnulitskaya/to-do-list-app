@@ -17,9 +17,10 @@ import { debounceTime, map } from 'rxjs/operators';
           <span>{{todo.title}}</span>
         </ng-container>
         <ng-template #editText>
-          <input matInput placeholder="Edit todo" formControlName="title" #title (keydown.enter)="onSaveClick(title.value)"
-        >
-<!--          <span>edit</span>-->
+        <mat-form-field appearance="legacy">
+          <mat-label>Edit</mat-label>
+          <input matInput placeholder="Edit todo" formControlName="title" #title (keydown.enter)="onSaveClick(title.value)">
+        </mat-form-field>
         </ng-template>
       </div>
 
