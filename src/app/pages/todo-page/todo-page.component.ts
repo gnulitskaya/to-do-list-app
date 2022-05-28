@@ -50,7 +50,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
       this.form.get('title')?.reset();
   }
 
-  delete(id: ID) {
+  delete(id: string) {
     this.todoService.removeTodo(id);
   }
 
@@ -64,7 +64,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this.todoService.updateStatus(todo);
   }
 
-  editTodo(id: ID): void {
+  editTodo(id: string): void {
     this.selectedEdit = id;
     this.form.get('titleEdit')?.reset();
   }

@@ -5,7 +5,14 @@
 export const environment = {
   production: false,
   apiKey: 'AIzaSyB0YrX1uwm0rvdBvBY8qhR2bQOcUsOsWdA',
-  fbDbUrl: 'https://todo-a147f-default-rtdb.firebaseio.com/'
+  firebase: {
+    apiKey: "AIzaSyAUMLuryzrLTZ_i1LGz_SM11vVul0nNysM",
+    authDomain: "todo-8eca3.firebaseapp.com",
+    projectId: "todo-8eca3",
+    storageBucket: "todo-8eca3.appspot.com",
+    messagingSenderId: "654285163919",
+    appId: "1:654285163919:web:670b3f6a1890966b5ccffa"
+  }
 };
 
 /*

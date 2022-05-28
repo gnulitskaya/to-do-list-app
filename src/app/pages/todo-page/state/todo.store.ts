@@ -3,7 +3,7 @@ import { StoreConfig, EntityStore, EntityState, QueryEntity, ID } from '@datoram
 import { Observable } from 'rxjs';
 
 export interface Todo {
-   id: ID,
+   id: string,
    title: string,
    completed: boolean
 }

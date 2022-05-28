@@ -1,12 +1,10 @@
-import { ID } from '@datorama/akita';
-
 export interface FbAuthResponse {
   idToken: string
   expiresIn: string
 }
 
 export type Todo = {
-  id: ID;
+  id: string;
   title: string;
   completed: boolean;
 };

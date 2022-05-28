@@ -22,13 +22,13 @@ export class TodosComponent {
   @Output() complete = new EventEmitter<Todo>();
   @Output() save = new EventEmitter<Todo>();
 
-  @Output() delete: EventEmitter<ID> = new EventEmitter<ID>();
-  @Output() edit: EventEmitter<ID> = new EventEmitter<ID>();
+  @Output() delete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() edit: EventEmitter<string> = new EventEmitter<string>();
 
-  onDeleteClick(id: ID): void {
+  onDeleteClick(id: string): void {
     this.delete.emit(id);
   }
-  onEditClick(id: ID): void {
+  onEditClick(id: string): void {
     this.edit.emit(id);
   }
 }

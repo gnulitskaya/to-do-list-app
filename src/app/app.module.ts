@@ -28,6 +28,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import {TodosComponent} from "./pages/todo-page/todos.component";
 import {TodoComponent} from "./pages/todo-page/todo.component";
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -58,7 +61,9 @@ registerLocaleData(ruLocale, 'ru');
       MatCardModule,
       MatButtonModule,
       MatCheckboxModule,
-      MatTableModule
+      MatTableModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFirestoreModule
   ],
   providers: [TodoService, TodoStore,TodoQuery],
   bootstrap: [AppComponent]

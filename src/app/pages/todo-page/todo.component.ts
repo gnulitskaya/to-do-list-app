@@ -43,22 +43,22 @@ export class TodoComponent implements OnInit{
 
   @Input() todo: Todo;
 
-  @Output() delete : EventEmitter<ID>  = new EventEmitter<ID>();
+  @Output() delete : EventEmitter<string>  = new EventEmitter<string>();
   @Output() complete : EventEmitter<Todo> = new EventEmitter<Todo>();
-  @Output() edit: EventEmitter<ID> = new EventEmitter<ID>();
+  @Output() edit: EventEmitter<string> = new EventEmitter<string>();
   @Output() saveEditTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   checkbox: FormControl;
 
   selectedEdit: ID | null = null;
 
-  onDeleteClick(id: ID) {
+  onDeleteClick(id: string) {
     this.delete.emit(id);
   }
   onSaveClick(title: string) {
     this.saveEditTodo.emit({ ...this.todo, title });
   }
-  onEditClick(id: ID) {
+  onEditClick(id: string) {
     this.edit.emit(id);
     this.selectedEdit = id;
   }

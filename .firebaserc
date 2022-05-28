@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todo-a147f": {
+      "hosting": {
+        "dummy": [
+          "todo-a147f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todo-a147f"
+  }
+}
